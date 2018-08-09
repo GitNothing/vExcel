@@ -1,6 +1,13 @@
+<h2>About</h2>
+A fluent API use to quickly build an Excel file.
 
+<h3>Prerequisite namespace</h3>
 
-<h2>Methods for sheet operations.</h2>
+```csharp
+using System.Drawing;
+```
+
+<h3>Methods for sheet operations.</h3>
 <table>
 <tr><td>vExcel.vWorksheet PushNewSheet(System.String)</td><td>Creates and returns the created sheet</td></tr>
 <tr><td>vExcel.vWorksheet PopSheetByName(System.String)</td><td>Removes and returns the last created sheet</td></tr>
@@ -11,7 +18,7 @@
 <tr><td>Void Close()</td><td>Use this or Using keyword to dispose resources</td></tr>
 </table>
 
-<h2>Methods for cell or range of cells manipulation.</h2>
+<h3>Methods for cell or range of cells manipulation.</h3>
 <table>
 <tr><td>vExcel.vWorksheet SelectCells(Int32, Int32, Int32, Int32)"</td><td>Coordinate of top-left and bottom-right cell</td></tr>
 <tr><td>vExcel.vWorksheet SelectCell(Int32, Int32)"</td><td>SELF-EXPLANATORY</td></tr>
@@ -48,7 +55,7 @@
 <tr><td>vExcel.vWorksheet SetBackgroundColor(System.Drawing.Color)</td><td>SELF-EXPLANATORY</td></tr>
 </table>
 
-<h2>Sample Code</h2>
+<h3>Sample Code</h3>
 
 ```csharp
 static void Main(string[] args)
@@ -176,3 +183,9 @@ static void Main(string[] args)
         }
     }
 ```
+
+<h3>Result from sample Code</h3>
+<img src="1.JPG" width="40%">
+<img src="2.JPG" width="40%">
+<img src="3.JPG" width="40%">
+<img src="4.JPG" width="40%">
