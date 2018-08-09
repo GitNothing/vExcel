@@ -516,6 +516,20 @@ namespace vExcel
             return this;
         }
 
+        public vWorksheet RemoveComment()
+        {
+            CheckIfSelected();
+            for (int i = _range[0]; i < _range[2] + 1; i++)
+            {
+                for (int j = _range[1]; j < _range[3] + 1; j++)
+                {
+                    var cell = Worksheet.Cells[j, i];
+                    cell.Comment.Delete();
+                }
+            }
+            return this;
+        }
+
         public vWorksheet SetBackgroundColor(Color color)
         {
             dynamic range = CellRangeAnySelector()[1];

@@ -53,6 +53,7 @@ using System.Drawing;
 <tr><td>vExcel.vWorksheet SetDefaultBorder()</td><td>SELF-EXPLANATORY</td></tr>
 <tr><td>vExcel.vWorksheet SetBorderColor(System.Drawing.Color)</td><td>SELF-EXPLANATORY</td></tr>
 <tr><td>vExcel.vWorksheet SetComment(System.String)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>vExcel.vWorksheet RemoveComment()</td><td>SELF-EXPLANATORY</td></tr>
 <tr><td>vExcel.vWorksheet SetBackgroundColor(System.Drawing.Color)</td><td>SELF-EXPLANATORY</td></tr>
 </table>
 
