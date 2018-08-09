@@ -1,0 +1,42 @@
+vExcel.vWorksheet PushNewSheet(System.String)	Creates and returns the created sheet
+vExcel.vWorksheet PopSheetByName(System.String)	Removes and returns the last created sheet
+vExcel.vWorksheet GetSheetByName(System.String)	SELF-EXPLANATORY
+"vExcel.vWorksheet RenameSheetByName(System.String, System.String)"	SELF-EXPLANATORY
+"vExcel.vWorksheet CopySheetByName(System.String, System.String)"	Copies and returns the copy sheet
+Void SaveOverride(System.String)	Save Excel file
+Void Close()	Use this or Using keyword to dispose resources
+	
+	
+"vExcel.vWorksheet SelectCells(Int32, Int32, Int32, Int32)"	Coordinate of top-left and bottom-right cell
+"vExcel.vWorksheet SelectCell(Int32, Int32)"	SELF-EXPLANATORY
+vExcel.vWorksheet SetValue(System.String)	SELF-EXPLANATORY
+"vExcel.vWorksheet ReplaceValue(System.String, System.String)"	SELF-EXPLANATORY
+"vExcel.vWorksheet ReplaceValueContaining(System.String, System.String)"	Replace values from matching substring
+vExcel.vWorksheet ClearValue()	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontSize(Int32)	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontColor(System.Drawing.Color)	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontFamily(System.String)	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontBold(Boolean)	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontItalic(Boolean)	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontUnderline(Boolean)	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontStrikethrough(Boolean)	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontHorizontalCenter()	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontHorizontalLeft()	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontHorizontalRight()	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontVerticalCenter()	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontVerticalBottom()	SELF-EXPLANATORY
+vExcel.vWorksheet SetFontVerticalTop()	SELF-EXPLANATORY
+vExcel.vWorksheet AutoSizeColumns()	SELF-EXPLANATORY
+vExcel.vWorksheet AutoSizeColumnsRelative()	Autosize entire column based on the current selected cell.
+"vExcel.vWorksheet SetBorderWeights(Double, Double, Double, Double)"	"Top, right, bottom, left"
+"vExcel.vWorksheet SetBorderWeightsEach(Double, Double, Double, Double)"	Applies per cell
+vExcel.vWorksheet SetBorderWeightEach(Double)	SELF-EXPLANATORY
+"vExcel.vWorksheet SetBorderBottom(Double, System.Drawing.Color)"	SELF-EXPLANATORY
+vExcel.vWorksheet SetBorderWeight(Double)	SELF-EXPLANATORY
+"vExcel.vWorksheet SetBorderColors(System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color)"	"Top, right, bottom, left"
+"vExcel.vWorksheet SetBorderColorsEach(System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color)"	Applies per cell
+vExcel.vWorksheet SetBorderColorEach(System.Drawing.Color)	SELF-EXPLANATORY
+vExcel.vWorksheet SetDefaultBorder()	SELF-EXPLANATORY
+vExcel.vWorksheet SetBorderColor(System.Drawing.Color)	SELF-EXPLANATORY
+vExcel.vWorksheet SetComment(System.String)	SELF-EXPLANATORY
+vExcel.vWorksheet SetBackgroundColor(System.Drawing.Color)	SELF-EXPLANATORY

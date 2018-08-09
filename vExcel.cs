@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using Microsoft.Office.Interop.Excel;
 using System.Drawing;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace vExcel
@@ -49,6 +50,7 @@ namespace vExcel
         private readonly Workbook Workbook;
         private string _fileName;
         private bool _deletedFirstSheet;
+        private bool _hasDisposed;
         private vExcel()
         {
             ThisApplication = new Microsoft.Office.Interop.Excel.Application();
@@ -66,6 +68,7 @@ namespace vExcel
             ThisApplication.Quit();
             Marshal.ReleaseComObject(Workbook);
             Marshal.ReleaseComObject(ThisApplication);
+            _hasDisposed = true;
         }
 
         public vWorksheet PushNewSheet(string Name)
@@ -155,7 +158,27 @@ namespace vExcel
 
         public void Dispose()
         {
+            if (_hasDisposed) return;
             Close();
+        }
+
+        public static void ListMethods()
+        {
+            var t = typeof(vExcel);
+            var t1 = typeof(vWorksheet);
+            MethodInfo[] myArrayMethodInfo = t.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            MethodInfo[] myArrayMethodInfo1 = t1.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            var e = myArrayMethodInfo.GetEnumerator();
+            while (e.MoveNext())
+            {
+                Console.WriteLine(e.Current.ToString());
+            }
+            var e1 = myArrayMethodInfo1.GetEnumerator();
+            while (e1.MoveNext())
+            {
+                Console.WriteLine(e1.Current.ToString());
+            }
+            Console.ReadKey();
         }
     }
 
