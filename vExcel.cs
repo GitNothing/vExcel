@@ -45,17 +45,15 @@ namespace vExcel
      */
     public class vExcel:IDisposable
     {
-        private List<vWorksheet> VWorksheets { get; set; }
+        private readonly List<vWorksheet> _vWorksheets = new List<vWorksheet>();
         public Application ThisApplication { get; set; }
         private readonly Workbook Workbook;
-        private string _fileName;
         private bool _deletedFirstSheet;
         private bool _hasDisposed;
         private vExcel()
         {
-            ThisApplication = new Microsoft.Office.Interop.Excel.Application();
+            ThisApplication = new Application();
             Workbook = ThisApplication.Workbooks.Add(Type.Missing);
-            VWorksheets = new List<vWorksheet>();
         }
 
         public static vExcel Factory()
@@ -83,7 +81,7 @@ namespace vExcel
             }
             var excelSheet = (Worksheet)ThisApplication.Worksheets[1];
             var sheet = new vWorksheet(excelSheet, Name);
-            VWorksheets.Add(sheet);
+            _vWorksheets.Add(sheet);
             return sheet;
         }
 
@@ -94,24 +92,24 @@ namespace vExcel
         /// <returns></returns>
         public vWorksheet PopSheetByName(string TabLabel)
         {
-            var sheet = VWorksheets.Find(e => e.TabLabel == TabLabel);
+            var sheet = _vWorksheets.Find(e => e.TabLabel == TabLabel);
             ThisApplication.DisplayAlerts = false;
             sheet.GetWorksheet().Delete();
             ThisApplication.DisplayAlerts = true;
-            VWorksheets.RemoveAll(e => e.TabLabel == TabLabel);
-            return VWorksheets.Last();
+            _vWorksheets.RemoveAll(e => e.TabLabel == TabLabel);
+            return _vWorksheets.Last();
         }
 
         public vWorksheet GetSheetByName(string TabLabel)
         {
-            var sheet = VWorksheets.Find(e => e.TabLabel == TabLabel);
+            var sheet = _vWorksheets.Find(e => e.TabLabel == TabLabel);
             sheet._isUnset = true;
             return sheet;
         }
 
         public vWorksheet RenameSheetByName(string current, string newName)
         {
-            var sheet = VWorksheets.Find(e => e.TabLabel == current);
+            var sheet = _vWorksheets.Find(e => e.TabLabel == current);
             if(sheet == null) throw new Exception($"Cannot rename, {current} was not found.");
             sheet.GetWorksheet().Name = newName;
             sheet.TabLabel = newName;
@@ -121,12 +119,12 @@ namespace vExcel
 
         public vWorksheet CopySheetByName(string current, string newName)
         {
-            var sheetOriginal = VWorksheets.Find(e => e.TabLabel == current);
+            var sheetOriginal = _vWorksheets.Find(e => e.TabLabel == current);
             if (sheetOriginal == null) throw new Exception($"Cannot copy, {current} was not found.");
             sheetOriginal.GetWorksheet().Copy((Worksheet) ThisApplication.Worksheets[1]);
             var newSheet = (Worksheet) ThisApplication.Worksheets[1];
             var sheet = new vWorksheet(newSheet, newName);
-            VWorksheets.Add(sheet);
+            _vWorksheets.Add(sheet);
             return sheet;
         }
 
@@ -136,7 +134,6 @@ namespace vExcel
         /// <param name="path">Example: Directory.GetCurrentDirectory() + "\\test.xlsx"</param>
         public void SaveOverride(string path)
         {
-            _fileName = path;
             if (File.Exists(path)) File.Delete(path);
             Workbook.SaveAs(path);
             Workbook.Close();
@@ -152,7 +149,7 @@ namespace vExcel
 
         private void CheckUniqueName(string NewName)
         {
-            var names = VWorksheets.Select(e => e.TabLabel).ToList();
+            var names = _vWorksheets.Select(e => e.TabLabel).ToList();
             if(names.Contains(NewName)) throw new Exception("Worksheet tab names must be unique.");
         }
 
@@ -187,7 +184,7 @@ namespace vExcel
         private readonly Worksheet Worksheet;
         public string TabLabel { get; set; }
         private int[] _range = {-1,-1,-1,-1};
-        private bool _isRanage;
+        private bool _isRange;
         internal bool _isUnset = true;
 
         public vWorksheet(Worksheet worksheet, string tabLabel)
@@ -207,8 +204,8 @@ namespace vExcel
             _range[1] = TopY;
             _range[2] = BottomX;
             _range[3] = BottomY;
-            _isRanage = true;
-            if (_isRanage && BottomY == -1) throw new Exception("Range input is incorrect");
+            _isRange = true;
+            if (_isRange && BottomY == -1) throw new Exception("Range input is incorrect");
             _isUnset = false;
             return this;
         }
@@ -218,7 +215,7 @@ namespace vExcel
             if (X < 1 || X < 1) throw new Exception("Range must start at 1");
             _range[0] = X;
             _range[1] = Y;
-            _isRanage = false;
+            _isRange = false;
             _isUnset = false;
             return this;
         }
@@ -532,7 +529,7 @@ namespace vExcel
         {
             CheckIfSelected();
             dynamic[] CellRangeAny = {null, null, null};
-            if (_isRanage)
+            if (_isRange)
             {
                 CellRangeAny[1] = Worksheet.Range[
                     Worksheet.Cells[_range[1], _range[0]], Worksheet.Cells[_range[3], _range[2]]
@@ -546,7 +543,7 @@ namespace vExcel
                 ];
             }
             CellRangeAny[0] = Worksheet.Cells[_range[1], _range[0]];
-            if (!_isRanage) CellRangeAny[2] = CellRangeAny[0];
+            if (!_isRange) CellRangeAny[2] = CellRangeAny[0];
             return CellRangeAny;
         }
 
@@ -560,15 +557,4 @@ namespace vExcel
             return Worksheet;
         }
     }
-
-    public class vCell
-    {
-
-    }
-
-    public class vRange
-    {
-
-    }
-
 }

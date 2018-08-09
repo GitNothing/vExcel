@@ -1,5 +1,5 @@
 <h2>About</h2>
-A fluent API use to quickly build an Excel file.
+A fluent API use to quickly build an Excel file. Use it as a .NET class library.
 
 <h3>Prerequisite namespace</h3>
 
