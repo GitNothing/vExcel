@@ -16,6 +16,7 @@ using System.Drawing;
 <tr><td>vExcel.vWorksheet CopySheetByName(System.String, System.String)"</td><td>Copies and returns the copy sheet</td></tr>
 <tr><td>Void SaveOverride(System.String)</td><td>Save Excel file</td></tr>
 <tr><td>Void Close()</td><td>Use this or Using keyword to dispose resources</td></tr>
+<tr><td>Static Void OpenInExcel(System.String)</td><td>Opens an excel file in Microsoft Excel as a separate process.</td></tr>
 </table>
 
 <h3>Methods for cell or range of cells manipulation.</h3>
@@ -55,7 +56,7 @@ using System.Drawing;
 <tr><td>vExcel.vWorksheet SetBackgroundColor(System.Drawing.Color)</td><td>SELF-EXPLANATORY</td></tr>
 </table>
 
-<h3>Sample Code</h3>
+<h3>Sample code usage</h3>
 
 ```csharp
 static void Main(string[] args)
