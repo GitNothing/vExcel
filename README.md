@@ -8,53 +8,55 @@ using System.Drawing;
 ```
 
 <h3>Methods for sheet operations.</h3>
+<h4>vExcel Class</h4>
 <table>
-<tr><td>vExcel.vWorksheet PushNewSheet(System.String)</td><td>Creates and returns the created sheet</td></tr>
-<tr><td>vExcel.vWorksheet PopSheetByName(System.String)</td><td>Removes and returns the last created sheet</td></tr>
-<tr><td>vExcel.vWorksheet GetSheetByName(System.String)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet RenameSheetByName(System.String, System.String)"</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet CopySheetByName(System.String, System.String)"</td><td>Copies and returns the copy sheet</td></tr>
-<tr><td>Void SaveOverride(System.String)</td><td>Save Excel file</td></tr>
-<tr><td>Void Close()</td><td>Use this or Using keyword to dispose resources</td></tr>
-<tr><td>Static Void OpenInExcel(System.String)</td><td>Opens an excel file in Microsoft Excel as a separate process.</td></tr>
+<tr><td>PushNewSheet(String Name)</td><td>Creates and returns the created sheet</td></tr>
+<tr><td>PopSheetByName(String TabLabel)</td><td>Removes and returns the last created sheet</td></tr>
+<tr><td>GetSheetByName(String TabLabel)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>RenameSheetByName(String current, String newName)"</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>CopySheetByName(String current, String newName)"</td><td>Copies and returns the copy sheet</td></tr>
+<tr><td>SaveOverride(String path)</td><td>Save Excel file</td></tr>
+<tr><td>Close()</td><td>Use this or Using keyword to dispose resources</td></tr>
 </table>
 
 <h3>Methods for cell or range of cells manipulation.</h3>
+<h4>vWorksheet Class</h4>
 <table>
-<tr><td>vExcel.vWorksheet SelectCells(Int32, Int32, Int32, Int32)"</td><td>Coordinate of top-left and bottom-right cell</td></tr>
-<tr><td>vExcel.vWorksheet SelectCell(Int32, Int32)"</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetValue(System.String)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet ReplaceValue(System.String, System.String)"</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet ReplaceValueContaining(System.String, System.String)"</td><td>Replace values from matching substring</td></tr>
-<tr><td>vExcel.vWorksheet ClearValue()</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontSize(Int32)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontColor(System.Drawing.Color)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontFamily(System.String)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontBold(Boolean)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontItalic(Boolean)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontUnderline(Boolean)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontStrikethrough(Boolean)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontHorizontalCenter()</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontHorizontalLeft()</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontHorizontalRight()</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontVerticalCenter()</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontVerticalBottom()</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetFontVerticalTop()</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet AutoSizeColumns()</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet AutoSizeColumnsRelative()</td><td>Autosize entire column based on the current selected cell.</td></tr>
-<tr><td>vExcel.vWorksheet SetBorderWeights(Double, Double, Double, Double)"</td><td>"Top, right, bottom, left</td></tr>
-<tr><td>vExcel.vWorksheet SetBorderWeightsEach(Double, Double, Double, Double)"</td><td>Applies per cell</td></tr>
-<tr><td>vExcel.vWorksheet SetBorderWeightEach(Double)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetBorderBottom(Double, System.Drawing.Color)"</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetBorderWeight(Double)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetBorderColors(System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color)"</td><td>"Top, right, bottom, left</td></tr>
-<tr><td>vExcel.vWorksheet SetBorderColorsEach(System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color)"</td><td>Applies per cell</td></tr>
-<tr><td>vExcel.vWorksheet SetBorderColorEach(System.Drawing.Color)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetDefaultBorder()</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetBorderColor(System.Drawing.Color)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetComment(System.String)</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet RemoveComment()</td><td>SELF-EXPLANATORY</td></tr>
-<tr><td>vExcel.vWorksheet SetBackgroundColor(System.Drawing.Color)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SelectCells(Int32 TopX, Int32 TopY, Int32 BottomX, Int32 BottomY)"</td><td>Coordinate of top-left and bottom-right cell</td></tr>
+<tr><td>SelectCell(Int32 X, Int32 Y)"</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetValue(String value)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>ReplaceValue(String current, String newValue)"</td><td>Replace value if entire string is matched</td></tr>
+<tr><td>ReplaceValueContaining(String containValue, String newValue)"</td><td>Replace value from matching substring</td></tr>
+<tr><td>ClearValue()</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontSize(Int32 size)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontColor(Color Color)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontFamily(String family)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontBold(Boolean isBold)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontItalic(Boolean isItalic)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontUnderline(Boolean isUnderline)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontStrikethrough(Boolean isStrikethrough)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontHorizontalCenter()</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontHorizontalLeft()</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontHorizontalRight()</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontVerticalCenter()</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontVerticalBottom()</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetFontVerticalTop()</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>AutoSizeColumns()</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>AutoSizeColumnsRelative()</td><td>Autosize entire column based on the current selected cell.</td></tr>
+<tr><td>SetBorderWeights(Double Top, Double Right, Double Bottom, Double Left)"</td><td>"Top, right, bottom, left</td></tr>
+<tr><td>SetBorderWeightsEach(Double Top, Double Right, Double Bottom, Double Left)"</td><td>Applies per cell</td></tr>
+<tr><td>SetBorderWeightEach(Double weight)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetBorderBottom(Double Weight, Color Color)"</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetBorderWeight(Double thickness)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetBorderColors(Color Top, Color Right, Color Bottom, Color Left)"</td><td>"Top, right, bottom, left</td></tr>
+<tr><td>SetBorderColorsEach(Color Top, Color Right, Color Bottom, Color Left)"</td><td>Applies per cell</td></tr>
+<tr><td>SetBorderColorEach(Color Color)</td><td>Applies per cell</td></tr>
+<tr><td>SetDefaultBorder()</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetBlank()</td><td>Set background to default color and removes any presence of borders. Font is not affected.</td></tr>
+<tr><td>SetBorderColor(Color Color)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetComment(String comment)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>RemoveComment()</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetBackgroundColor(Color color)</td><td>SELF-EXPLANATORY</td></tr>
 </table>
 
 <h3>Sample code usage</h3>

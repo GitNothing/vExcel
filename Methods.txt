@@ -1,42 +1,44 @@
-vExcel.vWorksheet PushNewSheet(System.String)	Creates and returns the created sheet
-vExcel.vWorksheet PopSheetByName(System.String)	Removes and returns the last created sheet
-vExcel.vWorksheet GetSheetByName(System.String)	SELF-EXPLANATORY
-"vExcel.vWorksheet RenameSheetByName(System.String, System.String)"	SELF-EXPLANATORY
-"vExcel.vWorksheet CopySheetByName(System.String, System.String)"	Copies and returns the copy sheet
-Void SaveOverride(System.String)	Save Excel file
-Void Close()	Use this or Using keyword to dispose resources
+PushNewSheet(String Name)	Creates and returns the created sheet
+PopSheetByName(String TabLabel)	Removes and returns the last created sheet
+GetSheetByName(String TabLabel)	SELF-EXPLANATORY
+"RenameSheetByName(String current, String newName)"	SELF-EXPLANATORY
+"CopySheetByName(String current, String newName)"	Copies and returns the copy sheet
+SaveOverride(String path)	Save Excel file
+Close()	Use this or Using keyword to dispose resources
 	
 	
-"vExcel.vWorksheet SelectCells(Int32, Int32, Int32, Int32)"	Coordinate of top-left and bottom-right cell
-"vExcel.vWorksheet SelectCell(Int32, Int32)"	SELF-EXPLANATORY
-vExcel.vWorksheet SetValue(System.String)	SELF-EXPLANATORY
-"vExcel.vWorksheet ReplaceValue(System.String, System.String)"	SELF-EXPLANATORY
-"vExcel.vWorksheet ReplaceValueContaining(System.String, System.String)"	Replace values from matching substring
-vExcel.vWorksheet ClearValue()	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontSize(Int32)	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontColor(System.Drawing.Color)	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontFamily(System.String)	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontBold(Boolean)	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontItalic(Boolean)	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontUnderline(Boolean)	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontStrikethrough(Boolean)	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontHorizontalCenter()	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontHorizontalLeft()	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontHorizontalRight()	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontVerticalCenter()	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontVerticalBottom()	SELF-EXPLANATORY
-vExcel.vWorksheet SetFontVerticalTop()	SELF-EXPLANATORY
-vExcel.vWorksheet AutoSizeColumns()	SELF-EXPLANATORY
-vExcel.vWorksheet AutoSizeColumnsRelative()	Autosize entire column based on the current selected cell.
-"vExcel.vWorksheet SetBorderWeights(Double, Double, Double, Double)"	"Top, right, bottom, left"
-"vExcel.vWorksheet SetBorderWeightsEach(Double, Double, Double, Double)"	Applies per cell
-vExcel.vWorksheet SetBorderWeightEach(Double)	SELF-EXPLANATORY
-"vExcel.vWorksheet SetBorderBottom(Double, System.Drawing.Color)"	SELF-EXPLANATORY
-vExcel.vWorksheet SetBorderWeight(Double)	SELF-EXPLANATORY
-"vExcel.vWorksheet SetBorderColors(System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color)"	"Top, right, bottom, left"
-"vExcel.vWorksheet SetBorderColorsEach(System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color)"	Applies per cell
-vExcel.vWorksheet SetBorderColorEach(System.Drawing.Color)	SELF-EXPLANATORY
-vExcel.vWorksheet SetDefaultBorder()	SELF-EXPLANATORY
-vExcel.vWorksheet SetBorderColor(System.Drawing.Color)	SELF-EXPLANATORY
-vExcel.vWorksheet SetComment(System.String)	SELF-EXPLANATORY
-vExcel.vWorksheet SetBackgroundColor(System.Drawing.Color)	SELF-EXPLANATORY
+"SelectCells(Int32 TopX, Int32 TopY, Int32 BottomX, Int32 BottomY)"	Coordinate of top-left and bottom-right cell
+"SelectCell(Int32 X, Int32 Y)"	SELF-EXPLANATORY
+SetValue(String value)	SELF-EXPLANATORY
+"ReplaceValue(String current, String newValue)"	Replace value if entire string is matched
+"ReplaceValueContaining(String containValue, String newValue)"	Replace value from matching substring
+ClearValue()	SELF-EXPLANATORY
+SetFontSize(Int32 size)	SELF-EXPLANATORY
+SetFontColor(Color Color)	SELF-EXPLANATORY
+SetFontFamily(String family)	SELF-EXPLANATORY
+SetFontBold(Boolean isBold)	SELF-EXPLANATORY
+SetFontItalic(Boolean isItalic)	SELF-EXPLANATORY
+SetFontUnderline(Boolean isUnderline)	SELF-EXPLANATORY
+SetFontStrikethrough(Boolean isStrikethrough)	SELF-EXPLANATORY
+SetFontHorizontalCenter()	SELF-EXPLANATORY
+SetFontHorizontalLeft()	SELF-EXPLANATORY
+SetFontHorizontalRight()	SELF-EXPLANATORY
+SetFontVerticalCenter()	SELF-EXPLANATORY
+SetFontVerticalBottom()	SELF-EXPLANATORY
+SetFontVerticalTop()	SELF-EXPLANATORY
+AutoSizeColumns()	SELF-EXPLANATORY
+AutoSizeColumnsRelative()	Autosize entire column based on the current selected cell.
+"SetBorderWeights(Double Top, Double Right, Double Bottom, Double Left)"	"Top, right, bottom, left"
+"SetBorderWeightsEach(Double Top, Double Right, Double Bottom, Double Left)"	Applies per cell
+SetBorderWeightEach(Double weight)	SELF-EXPLANATORY
+"SetBorderBottom(Double Weight, Color Color)"	SELF-EXPLANATORY
+SetBorderWeight(Double thickness)	SELF-EXPLANATORY
+"SetBorderColors(Color Top, Color Right, Color Bottom, Color Left)"	"Top, right, bottom, left"
+"SetBorderColorsEach(Color Top, Color Right, Color Bottom, Color Left)"	Applies per cell
+SetBorderColorEach(Color Color)	Applies per cell
+SetDefaultBorder()	SELF-EXPLANATORY
+SetBlank()	Set background to default color and removes any presence of borders. Font is not affected.
+SetBorderColor(Color Color)	SELF-EXPLANATORY
+SetComment(String comment)	SELF-EXPLANATORY
+RemoveComment()	SELF-EXPLANATORY
+SetBackgroundColor(Color color)	SELF-EXPLANATORY

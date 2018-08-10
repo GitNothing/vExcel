@@ -6,43 +6,10 @@ using System.Linq;
 using System.Threading;
 using Microsoft.Office.Interop.Excel;
 using System.Drawing;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace vExcel
 {
-    /*
-     Features:
-     Create new sheet with tab name
-     Select sheet by tab name
-     Removes sheet by tab name
-     Rename sheet tab name
-     Copy sheet by tab name
-     select single or multiple cells
-
-     Cell or cell range manipulater API:
-        value
-        value replace
-        value replaceWhere
-
-        font size
-        color
-        bold
-        italic
-        family
-        underline
-        strikethrough
-        horizontal and vertical alignment
-
-        comment
-        background color
-        Autofit column relative to selected cells
-        *Autofit column relative to longest text in column
-        border thickness as whole or by sides
-        border color as whole or by sides
-        border bottom only by thickness and color 
-        border set back to default
-     */
     public class vExcel:IDisposable
     {
         private readonly List<vWorksheet> _vWorksheets = new List<vWorksheet>();
@@ -59,14 +26,6 @@ namespace vExcel
         public static vExcel Factory()
         {
             return new vExcel();
-        }
-
-        public void Close()
-        {
-            ThisApplication.Quit();
-            Marshal.ReleaseComObject(Workbook);
-            Marshal.ReleaseComObject(ThisApplication);
-            _hasDisposed = true;
         }
 
         public vWorksheet PushNewSheet(string Name)
@@ -139,6 +98,14 @@ namespace vExcel
             Workbook.Close();
         }
 
+        public void Close()
+        {
+            ThisApplication.Quit();
+            Marshal.ReleaseComObject(Workbook);
+            Marshal.ReleaseComObject(ThisApplication);
+            _hasDisposed = true;
+        }
+
         public static void OpenInExcel(string path)
         {
             Thread.Sleep(1000);
@@ -157,25 +124,6 @@ namespace vExcel
         {
             if (_hasDisposed) return;
             Close();
-        }
-
-        public static void ListMethods()
-        {
-            var t = typeof(vExcel);
-            var t1 = typeof(vWorksheet);
-            MethodInfo[] myArrayMethodInfo = t.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-            MethodInfo[] myArrayMethodInfo1 = t1.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-            var e = myArrayMethodInfo.GetEnumerator();
-            while (e.MoveNext())
-            {
-                Console.WriteLine(e.Current.ToString());
-            }
-            var e1 = myArrayMethodInfo1.GetEnumerator();
-            while (e1.MoveNext())
-            {
-                Console.WriteLine(e1.Current.ToString());
-            }
-            Console.ReadKey();
         }
     }
 
@@ -481,16 +429,20 @@ namespace vExcel
         public vWorksheet SetDefaultBorder()
         {
             CheckIfSelected();
-            for (int i = _range[0]; i < _range[2] + 1; i++)
-            {
-                for (int j = _range[1]; j < _range[3] + 1; j++)
-                {
-                    var range = Worksheet.Range[Worksheet.Cells[j, i], Worksheet.Cells[j, i]];
-                    range.Borders.Color = Color.LightGray;
-                    range.Borders.Weight = 2d;
-                    range.Borders.LineStyle = XlLineStyle.xlContinuous;
-                }
-            }
+            var range = Worksheet.Range[Worksheet.Cells[_range[0], _range[1]], Worksheet.Cells[_range[2], _range[3]]];
+            range.Borders.Color = Color.LightGray;
+            range.Borders.Weight = 2d;
+            range.Borders.LineStyle = XlLineStyle.xlContinuous;
+            return this;
+        }
+
+        public vWorksheet SetBlank()
+        {
+            CheckIfSelected();
+            var range = Worksheet.Range[Worksheet.Cells[_range[0], _range[1]], Worksheet.Cells[_range[2], _range[3]]];
+            range.Borders.Color = Color.Transparent;
+            range.Interior.Color = Color.Transparent;
+            range.Borders.LineStyle = XlLineStyle.xlLineStyleNone;
             return this;
         }
 
