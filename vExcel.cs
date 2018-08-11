@@ -163,6 +163,8 @@ namespace vExcel
             if (X < 1 || X < 1) throw new Exception("Range must start at 1");
             _range[0] = X;
             _range[1] = Y;
+            _range[2] = X;
+            _range[3] = Y;
             _isRange = false;
             _isUnset = false;
             return this;
@@ -263,37 +265,48 @@ namespace vExcel
 
         public vWorksheet SetFontHorizontalCenter()
         {
-            CellRangeAnySelector()[2].Style.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            CellRangeAnySelector()[2].HorizontalAlignment = XlHAlign.xlHAlignCenter;
             return this;
         }
         public vWorksheet SetFontHorizontalLeft()
         {
-            CellRangeAnySelector()[2].Style.HorizontalAlignment = XlHAlign.xlHAlignLeft;
+            CellRangeAnySelector()[2].HorizontalAlignment = XlHAlign.xlHAlignLeft;
             return this;
         }
         public vWorksheet SetFontHorizontalRight()
         {
-            CellRangeAnySelector()[2].Style.HorizontalAlignment = XlHAlign.xlHAlignRight;
+            CellRangeAnySelector()[2].HorizontalAlignment = XlHAlign.xlHAlignRight;
             return this;
         }
         public vWorksheet SetFontVerticalCenter()
         {
-            CellRangeAnySelector()[2].Style.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            CellRangeAnySelector()[2].VerticalAlignment = XlVAlign.xlVAlignCenter;
             return this;
         }
         public vWorksheet SetFontVerticalBottom()
         {
-            CellRangeAnySelector()[2].Style.VerticalAlignment = XlVAlign.xlVAlignBottom;
+            CellRangeAnySelector()[2].VerticalAlignment = XlVAlign.xlVAlignBottom;
             return this;
         }
         public vWorksheet SetFontVerticalTop()
         {
-            CellRangeAnySelector()[2].Style.VerticalAlignment = XlVAlign.xlVAlignTop;
+            CellRangeAnySelector()[2].VerticalAlignment = XlVAlign.xlVAlignTop;
+            return this;
+        }
+
+        /// <summary>
+        /// AutoSizeColumns will have no effect on cells with textwrap enabled.
+        /// </summary>
+        /// <param name="isWrap"></param>
+        /// <returns></returns>
+        public vWorksheet SetTextwrap(bool isWrap)
+        {
+            CellRangeAnySelector()[1].WrapText = isWrap;
             return this;
         }
         #endregion
 
-        #region Auto Sizing
+        #region Row and column
         /// <summary>
         /// AutoSize relative to the selected cells.
         /// </summary>
@@ -309,6 +322,31 @@ namespace vExcel
         {
             dynamic range = CellRangeAnySelector()[1];
             range.Columns.AutoFit();
+            return this;
+        }
+
+        public vWorksheet SetColumnWidth(int width)
+        {
+            dynamic range = CellRangeAnySelector()[1];
+            range.EntireColumn.ColumnWidth = width;
+            return this;
+        }
+        public vWorksheet SetRowHeight(int height)
+        {
+            dynamic range = CellRangeAnySelector()[1];
+            range.EntireRow.RowHeight = height;
+            return this;
+        }
+        public vWorksheet FreezePaneRow(bool toggle, int row = 0)
+        {
+            Worksheet.Application.ActiveWindow.SplitRow = row;
+            Worksheet.Application.ActiveWindow.FreezePanes = toggle;
+            return this;
+        }
+        public vWorksheet FreezePaneColumn(bool toggle, int column = 0)
+        {
+            Worksheet.Application.ActiveWindow.SplitColumn = column;
+            Worksheet.Application.ActiveWindow.FreezePanes = toggle;
             return this;
         }
         #endregion
@@ -495,20 +533,11 @@ namespace vExcel
         {
             CheckIfSelected();
             dynamic[] CellRangeAny = {null, null, null};
-            if (_isRange)
-            {
-                CellRangeAny[1] = Worksheet.Range[
-                    Worksheet.Cells[_range[1], _range[0]], Worksheet.Cells[_range[3], _range[2]]
-                ];
-                CellRangeAny[2] = CellRangeAny[1];
-            }
-            else
-            {
-                CellRangeAny[1] = Worksheet.Range[
-                    Worksheet.Cells[_range[1], _range[0]], Worksheet.Cells[_range[1], _range[0]]
-                ];
-            }
             CellRangeAny[0] = Worksheet.Cells[_range[1], _range[0]];
+            CellRangeAny[1] = Worksheet.Range[
+                Worksheet.Cells[_range[1], _range[0]], Worksheet.Cells[_range[3], _range[2]]
+            ];
+            CellRangeAny[2] = CellRangeAny[1];
             if (!_isRange) CellRangeAny[2] = CellRangeAny[0];
             return CellRangeAny;
         }

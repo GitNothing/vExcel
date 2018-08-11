@@ -43,6 +43,10 @@ using System.Drawing;
 <tr><td>SetFontVerticalTop()</td><td>SELF-EXPLANATORY</td></tr>
 <tr><td>AutoSizeColumns()</td><td>SELF-EXPLANATORY</td></tr>
 <tr><td>AutoSizeColumnsRelative()</td><td>Autosize entire column based on the current selected cell.</td></tr>
+<tr><td>SetColumnWidth(Int32 width)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>SetRowHeight(Int32 height)</td><td>SELF-EXPLANATORY</td></tr>
+<tr><td>FreezePaneRow(Boolean toggle, Int32 row)</td><td>Size does not need to be specified if toggling false</td></tr>
+<tr><td>FreezePaneColumn(Boolean toggle, Int32 column)</td><td>Size does not need to be specified if toggling false</td></tr>
 <tr><td>SetBorderWeights(Double Top, Double Right, Double Bottom, Double Left)"</td><td>"Top, right, bottom, left</td></tr>
 <tr><td>SetBorderWeightsEach(Double Top, Double Right, Double Bottom, Double Left)"</td><td>Applies per cell</td></tr>
 <tr><td>SetBorderWeightEach(Double weight)</td><td>SELF-EXPLANATORY</td></tr>
